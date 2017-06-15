@@ -1,0 +1,30 @@
+{
+    "name" : "pdetail",
+    "version" : "0.0.0",
+    "description" : "Companion package to prange which provides more detail for each combo in a card range.",
+    "main" : "pdetail.js",
+    "scripts" : {
+      "test" : "set -e; for t in test/*.js; do node $t; done"
+    },
+    "repository" : {
+      "type" : "git",
+      "url" : "git://github.com/thlorenz/pdetail.git"
+    },
+    "homepage" : "https://github.com/thlorenz/pdetail",
+    "dependencies" : {
+    },
+    "devDependencies" : {
+      "tape": "~4.6.3"
+    },
+    "keywords": [] ,
+    "author" : {
+      "name" : "Thorsten Lorenz",
+      "email" : "thlorenz@gmx.de",
+      "url" : "http://thlorenz.com"
+    },
+    "license" : {
+      "type": "MIT",
+      "url": "https://github.com/thlorenz/pdetail/blob/master/LICENSE"
+    },
+    "engine" : { "node" : ">=6" }
+}
