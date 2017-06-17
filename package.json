@@ -1,6 +1,6 @@
 {
   "name": "pdetail",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Companion package to prange which provides more detail for each combo in a card range.",
   "main": "pdetail.js",
   "scripts": {
