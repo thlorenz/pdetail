@@ -3,6 +3,12 @@ const suits = [ 'h', 's', 'd', 'c' ]
 
 const cache = new Map()
 
+function setIntersection(set1, set2) {
+  return new Set(
+    Array.from(set1).filter(x => set2.has(x))
+  )
+}
+
 function addPairDetails(rank, set) {
   // 6 possible pairs (not 12) since 9h9s is the same as 9s9h
   for (let s1 = 0; s1 < suits.length; s1++) {
@@ -74,6 +80,20 @@ function detailRangeAll() {
 }
 
 /**
+ * Provides all combos of the card range that are found in the provided set.
+ *
+ * @name detailRangeIn
+ * @function
+ * @param {Set} set to be queried for the combos that are represented by the range
+ * @param {String} cards the cards for which to give a detailed combo range, i.e. 'AKs'
+ * @return {Set} all combos that are represented by the given range and also found in the set
+ */
+function detailRangeIn(set, cards) {
+  const detail = detailRange(cards)
+  return setIntersection(detail, set)
+}
+
+/**
  * Provides all possible combinations of a given part of a card range.
  *
  * ```
@@ -113,5 +133,6 @@ function detailRange(cards) {
 
 module.exports = {
     detailRange
+  , detailRangeIn
   , detailRangeAll
 }

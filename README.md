@@ -22,6 +22,17 @@ Returns all possible 1326 combinations of cards one might hold.
 
 Returns **[Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)** set of all possible card combos
 
+### detailRangeIn
+
+Provides all combos of the card range that are found in the provided set.
+
+**Parameters**
+
+-   `set` **[Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)** to be queried for the combos that are represented by the range
+-   `cards` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** the cards for which to give a detailed combo range, i.e. 'AKs'
+
+Returns **[Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)** all combos that are represented by the given range and also found in the set
+
 ### detailRange
 
 Provides all possible combinations of a given part of a card range.
