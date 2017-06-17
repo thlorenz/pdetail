@@ -1,6 +1,8 @@
 const ranks = [ 'A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2' ]
 const suits = [ 'h', 's', 'd', 'c' ]
 
+const cache = new Map()
+
 function addPairDetails(rank, set) {
   // 6 possible pairs (not 12) since 9h9s is the same as 9s9h
   for (let s1 = 0; s1 < suits.length; s1++) {
@@ -92,15 +94,21 @@ function detailRangeAll() {
  * @return {Set} set of all possible combinations on how to hold the combo
  */
 function detailRange(cards) {
+  if (cache.has(cards)) return cache.get(cards)
+
   let [ r1, r2, suitedness ] = cards
   if (r1 === r2) return addPairDetails(r1, new Set())
 
   if (ranks.indexOf(r1) > ranks.indexOf(r2)) {
     const tmp = r1; r1 = r2; r2 = tmp
   }
-  if (suitedness === 's') return addSuitedDetails(r1, r2, new Set())
-  if (suitedness === 'o') return addOffsuitDetails(r1, r2, new Set())
-  return addOffsuitAndSuitedDetails(r1, r2, new Set())
+
+  let res
+  if (suitedness === 's') res = addSuitedDetails(r1, r2, new Set())
+  else if (suitedness === 'o') res = addOffsuitDetails(r1, r2, new Set())
+  else res = addOffsuitAndSuitedDetails(r1, r2, new Set())
+  cache.set(cards, res)
+  return res
 }
 
 module.exports = {
