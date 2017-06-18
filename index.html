@@ -1,0 +1,353 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>  | Documentation</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
+  <link href='assets/style.css' type='text/css' rel='stylesheet' />
+  <link href='assets/github.css' type='text/css' rel='stylesheet' />
+</head>
+<body class='documentation'>
+  <div class='max-width-4 mx-auto'>
+    <div class='clearfix md-mxn2'>
+      <div class='fixed xs-hide fix-3 overflow-auto max-height-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'></h3>
+          <div class='mb1'><code></code></div>
+          <input
+            placeholder='Filter'
+            id='filter-input'
+            class='col12 block input'
+            type='text' />
+          <div id='toc'>
+            <ul class='list-reset h5 py1-ul'>
+              
+                
+                <li><a
+                  href='#detailrangeall'
+                  class="">
+                  detailRangeAll
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#detailrangein'
+                  class="">
+                  detailRangeIn
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#detailrange'
+                  class="">
+                  detailRange
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#rangefromdetail'
+                  class="">
+                  rangeFromDetail
+                  
+                </a>
+                
+                </li>
+              
+            </ul>
+          </div>
+          <div class='mt1 h6 quiet'>
+            <a href='http://documentation.js.org/reading-documentation.html'>Need help reading this?</a>
+          </div>
+        </div>
+      </div>
+      <div class='fix-margin-3'>
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='detailrangeall'>
+      detailRangeAll
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Returns all possible 1326 combinations of cards one might hold.</p>
+
+
+  <div class='pre p1 fill-light mt0'>detailRangeAll(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></code>:
+        set of all possible card combos
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='detailrangein'>
+      detailRangeIn
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Provides all combos of the card range that are found in the provided set.</p>
+
+
+  <div class='pre p1 fill-light mt0'>detailRangeIn(set: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a>, cards: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>set</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a>)</code>
+	    to be queried for the combos that are represented by the range
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>cards</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+	    the cards for which to give a detailed combo range, i.e. 'AKs'
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></code>:
+        all combos that are represented by the given range and also found in the set
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='detailrange'>
+      detailRange
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Provides all possible combinations of a given part of a card range.</p>
+<pre><code> '99'  => '9h9s', '9h9d', '9h9c', '9s9d', '9s9c', '9d9c'
+
+ 'AKs' => 'AhKh', 'AsKs', 'AdKd', 'AcKc'
+
+ 'KQo' => 'KhQs', 'KhQd', 'KhQc', 'KsQh', 'KsQd', 'KsQc',
+          'KdQh', 'KdQs', 'KdQc', 'KcQh', 'KcQs', 'KcQd'
+
+ 'JT'  => 'JhTh', 'JhTs', 'JhTd', 'JhTc', 'JsTh', 'JsTs', 'JsTd', 'JsTc',
+          'JdTh', 'JdTs', 'JdTd', 'JdTc', 'JcTh', 'JcTs', 'JcTd', 'JcTc'
+</code></pre>
+
+
+  <div class='pre p1 fill-light mt0'>detailRange(cards: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>cards</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+	    the cards for which to give a detailed combo range, i.e. 'AKs'
+Note: that AKs is considered the same as KAs and no duplicate combos will be included
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></code>:
+        set of all possible combinations on how to hold the combo
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='rangefromdetail'>
+      rangeFromDetail
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Calculates a range from the detail combos, i.e. obtained via <code>detailRange</code>.</p>
+
+
+  <div class='pre p1 fill-light mt0'>rangeFromDetail(): any</div>
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>any</code>:
+        object with the following props:
+<ul>
+<li>{Map} pairs: all pairs found grouped, i.e. <code>AA: { AdAs, AdAc ... }</code></li>
+<li>{Map} suiteds: all suiteds found grouped, i.e. <code>AKs: { AdKd, AcKc ... }</code></li>
+<li>{Map} offsuits: all offsuits found grouped, i.e. <code>AKo: { AdKc, AcKs ... }</code></li>
+<li>{Set} incomplete: all incomplete ranges, i.e. <code>AA</code> if one possible AA combo was missing</li>
+<li>{Set} complete: all complete ranges, i.e. <code>AA</code> if none possible AA combo was missing</li>
+<li>{Set} all: union of incomplete and complete</li>
+</ul>
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+      </div>
+    </div>
+  </div>
+  <script src='assets/anchor.js'></script>
+  <script src='assets/site.js'></script>
+</body>
+</html>
