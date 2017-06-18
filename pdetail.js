@@ -131,8 +131,69 @@ function detailRange(cards) {
   return res
 }
 
+/**
+ * Calculates a range from the detail combos, i.e. obtained via `detailRange`.
+ *
+ * @name rangeFromDetail
+ * @function
+ * @parm {Set} set of combinations to obtain a range for
+ * @return object with the following props:
+ *  - {Map} pairs: all pairs found grouped, i.e. `AA: { AdAs, AdAc ... }`
+ *  - {Map} suiteds: all suiteds found grouped, i.e. `AKs: { AdKd, AcKc ... }`
+ *  - {Map} offsuits: all offsuits found grouped, i.e. `AKo: { AdKc, AcKs ... }`
+ *  - {Set} incomplete: all incomplete ranges, i.e. `AA` if one possible AA combo was missing
+ *  - {Set} complete: all complete ranges, i.e. `AA` if none possible AA combo was missing
+ *  - {Set} all: union of incomplete and complete
+ */
+function rangeFromDetail(set) {
+  const pairs = new Map()
+  const suiteds = new Map()
+  const offsuits = new Map()
+
+  function updateMap(map, key, val) {
+    if (!map.has(key)) map.set(key, new Set())
+    map.get(key).add(val)
+  }
+
+  for (const cards of set) {
+    let [ r1, s1, r2, s2 ] = cards
+    if (r1 === r2) {
+      updateMap(pairs, r1 + r2, cards)
+      continue
+    }
+
+    if (ranks.indexOf(r1) > ranks.indexOf(r2)) {
+      const tmp = r1; r1 = r2; r2 = tmp
+    }
+    if (s1 === s2) {
+      updateMap(suiteds, r1 + r2 + 's', cards)
+      continue
+    }
+    updateMap(offsuits, r1 + r2 + 'o', cards)
+  }
+
+  const complete = new Set()
+  const incomplete = new Set()
+  const all = new Set()
+  for (const [ k, v ] of pairs) {
+    if (v.size < 6) incomplete.add(k); else complete.add(k)
+    all.add(k)
+  }
+  for (const [ k, v ] of suiteds) {
+    if (v.size < 4) incomplete.add(k); else complete.add(k)
+    all.add(k)
+  }
+  for (const [ k, v ] of offsuits) {
+    if (v.size < 12) incomplete.add(k); else complete.add(k)
+    all.add(k)
+  }
+
+  return { pairs, suiteds, offsuits, complete, incomplete, all }
+}
+
 module.exports = {
     detailRange
   , detailRangeIn
   , detailRangeAll
+  , rangeFromDetail
 }
