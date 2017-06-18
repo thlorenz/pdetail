@@ -54,6 +54,17 @@ Provides all possible combinations of a given part of a card range.
 
 Returns **[Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)** set of all possible combinations on how to hold the combo
 
+### rangeFromDetail
+
+Calculates a range from the detail combos, i.e. obtained via `detailRange`.
+
+Returns **any** object with the following props:-   {Map} pairs: all pairs found grouped, i.e. `AA: { AdAs, AdAc ... }`
+-   {Map} suiteds: all suiteds found grouped, i.e. `AKs: { AdKd, AcKc ... }`
+-   {Map} offsuits: all offsuits found grouped, i.e. `AKo: { AdKc, AcKs ... }`
+-   {Set} incomplete: all incomplete ranges, i.e. `AA` if one possible AA combo was missing
+-   {Set} complete: all complete ranges, i.e. `AA` if none possible AA combo was missing
+-   {Set} all: union of incomplete and complete
+
 ## License
 
 MIT
