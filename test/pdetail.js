@@ -1,5 +1,5 @@
 const test = require('tape')
-const { detailRange, detailRangeAll } = require('../')
+const { detailRange, detailRangeAll, rangeFromDetail } = require('../')
 
 // eslint-disable-next-line no-unused-vars
 function inspect(obj, depth) {
@@ -64,5 +64,36 @@ test('\ndetail range suited or offsuit cards', function(t) {
 test('\nall possible details', function(t) {
   const res = detailRangeAll()
   t.equal(res.size, 1326, '1326 total unique combos are possible')
+  t.end()
+})
+
+test('\nrange from detail', function(t) {
+  {
+    const set = new Set([ 'AdKd', 'AsKs', 'AhKh', 'AcKc' ])
+    const { pairs, suiteds, offsuits, complete, incomplete, all } =
+      rangeFromDetail(set)
+
+    t.equal(pairs.size, 0, 'no pairs in ' + set)
+    t.equal(offsuits.size, 0, 'no offsuits in ' + set)
+    t.equal(incomplete.size, 0, 'no incomplete in ' + set)
+    t.deepEqual(Array.from(suiteds.keys()), [ 'AKs' ], 'suiteds AKs ')
+    t.deepEqual(Array.from(complete), [ 'AKs' ], 'complete AKs ')
+    t.deepEqual(Array.from(all), [ 'AKs' ], 'all AKs ')
+  }
+
+  {
+    const set = new Set([ 'AdKd', 'AsKs', 'AhKh' ])
+    const { pairs, suiteds, offsuits, complete, incomplete, all } =
+      rangeFromDetail(set)
+
+    t.equal(pairs.size, 0, 'no pairs in ' + set)
+    t.equal(offsuits.size, 0, 'no offsuits in ' + set)
+    t.deepEqual(Array.from(suiteds.keys()), [ 'AKs' ], 'suiteds AKs ')
+    t.deepEqual(Array.from(incomplete), [ 'AKs' ], 'incomplete AKs ')
+    t.equal(complete.size, 0, 'no incomplete in ' + set)
+    t.deepEqual(Array.from(all), [ 'AKs' ], 'all AKs ')
+  }
+  // May need more tests here ...
+
   t.end()
 })
