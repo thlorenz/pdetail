@@ -11,9 +11,9 @@ function setIntersection(set1, set2) {
 
 function addPairDetails(rank, set) {
   // 6 possible pairs (not 12) since 9h9s is the same as 9s9h
-  for (let s1 = 0; s1 < suits.length; s1++) {
+  for (var s1 = 0; s1 < suits.length; s1++) {
     const suit1 = suits[s1]
-    for (let s2 = s1 + 1; s2 < suits.length; s2++) {
+    for (var s2 = s1 + 1; s2 < suits.length; s2++) {
       const suit2 = suits[s2]
       set.add(rank + suit1 + rank + suit2)
     }
@@ -23,9 +23,9 @@ function addPairDetails(rank, set) {
 
 function addOffsuitDetails(rank1, rank2, set) {
   // 12 possible offsuit combinations
-  for (let s1 = 0; s1 < suits.length; s1++) {
+  for (var s1 = 0; s1 < suits.length; s1++) {
     const suit1 = suits[s1]
-    for (let s2 = 0; s2 < suits.length; s2++) {
+    for (var s2 = 0; s2 < suits.length; s2++) {
       if (s1 === s2) continue // ignore suited cards
       const suit2 = suits[s2]
       set.add(rank1 + suit1 + rank2 + suit2)
@@ -36,7 +36,7 @@ function addOffsuitDetails(rank1, rank2, set) {
 
 function addSuitedDetails(rank1, rank2, set) {
   // 4 possible suited combinations
-  for (let s = 0; s < suits.length; s++) {
+  for (var s = 0; s < suits.length; s++) {
     const suit = suits[s]
     set.add(rank1 + suit + rank2 + suit)
   }
@@ -45,9 +45,9 @@ function addSuitedDetails(rank1, rank2, set) {
 
 function addOffsuitAndSuitedDetails(rank1, rank2, set) {
   // 16 possible offsuit combinations
-  for (let s1 = 0; s1 < suits.length; s1++) {
+  for (var s1 = 0; s1 < suits.length; s1++) {
     const suit1 = suits[s1]
-    for (let s2 = 0; s2 < suits.length; s2++) {
+    for (var s2 = 0; s2 < suits.length; s2++) {
       const suit2 = suits[s2]
       set.add(rank1 + suit1 + rank2 + suit2)
     }
@@ -57,9 +57,9 @@ function addOffsuitAndSuitedDetails(rank1, rank2, set) {
 
 function calculateAllPossibleDetails() {
   const set = new Set()
-  for (let r1 = 0; r1 < ranks.length; r1++) {
+  for (var r1 = 0; r1 < ranks.length; r1++) {
     addPairDetails(ranks[r1], set)
-    for (let r2 = r1 + 1; r2 < ranks.length; r2++) {
+    for (var r2 = r1 + 1; r2 < ranks.length; r2++) {
       addOffsuitAndSuitedDetails(ranks[r1], ranks[r2], set)
     }
   }
@@ -116,14 +116,14 @@ function detailRangeIn(set, cards) {
 function detailRange(cards) {
   if (cache.has(cards)) return cache.get(cards)
 
-  let [ r1, r2, suitedness ] = cards
+  var [ r1, r2, suitedness ] = cards
   if (r1 === r2) return addPairDetails(r1, new Set())
 
   if (ranks.indexOf(r1) > ranks.indexOf(r2)) {
     const tmp = r1; r1 = r2; r2 = tmp
   }
 
-  let res
+  var res
   if (suitedness === 's') res = addSuitedDetails(r1, r2, new Set())
   else if (suitedness === 'o') res = addOffsuitDetails(r1, r2, new Set())
   else res = addOffsuitAndSuitedDetails(r1, r2, new Set())
@@ -156,7 +156,7 @@ function rangeFromDetail(set) {
   }
 
   for (const cards of set) {
-    let [ r1, s1, r2, s2 ] = cards
+    var [ r1, s1, r2, s2 ] = cards
     if (r1 === r2) {
       updateMap(pairs, r1 + r2, cards)
       continue

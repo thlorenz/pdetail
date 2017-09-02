@@ -7,8 +7,8 @@ function inspect(obj, depth) {
 }
 
 test('\ndetail range pairs', function(t) {
-  let res = Array.from(detailRange('99'))
-  let expected = [ '9h9s', '9h9d', '9h9c', '9s9d', '9s9c', '9d9c' ]
+  var res = Array.from(detailRange('99'))
+  var expected = [ '9h9s', '9h9d', '9h9c', '9s9d', '9s9c', '9d9c' ]
   t.equal(res.length, 6, '6 ways to hold 99')
   t.deepEqual(res, expected, expected.join(' '))
 
@@ -20,8 +20,8 @@ test('\ndetail range pairs', function(t) {
 })
 
 test('\ndetail range suited cards', function(t) {
-  let res = Array.from(detailRange('AKs'))
-  let expected = [ 'AhKh', 'AsKs', 'AdKd', 'AcKc' ]
+  var res = Array.from(detailRange('AKs'))
+  var expected = [ 'AhKh', 'AsKs', 'AdKd', 'AcKc' ]
   t.equal(res.length, 4, '4 ways to hold AKs')
   t.deepEqual(res, expected, expected.join(' '))
 
@@ -33,8 +33,8 @@ test('\ndetail range suited cards', function(t) {
 })
 
 test('\ndetail range offsuit cards', function(t) {
-  let res = Array.from(detailRange('KQo'))
-  let expected = [ 'KhQs', 'KhQd', 'KhQc', 'KsQh', 'KsQd', 'KsQc', 'KdQh', 'KdQs', 'KdQc', 'KcQh', 'KcQs', 'KcQd' ]
+  var res = Array.from(detailRange('KQo'))
+  var expected = [ 'KhQs', 'KhQd', 'KhQc', 'KsQh', 'KsQd', 'KsQc', 'KdQh', 'KdQs', 'KdQc', 'KcQh', 'KcQs', 'KcQd' ]
   t.equal(res.length, 12, '12 ways to hold KQo')
   t.deepEqual(res, expected, expected.join(' '))
 
@@ -47,8 +47,8 @@ test('\ndetail range offsuit cards', function(t) {
 })
 
 test('\ndetail range suited or offsuit cards', function(t) {
-  let res = Array.from(detailRange('JT'))
-  let expected = [ 'JhTh', 'JhTs', 'JhTd', 'JhTc', 'JsTh', 'JsTs', 'JsTd', 'JsTc',
+  var res = Array.from(detailRange('JT'))
+  var expected = [ 'JhTh', 'JhTs', 'JhTd', 'JhTc', 'JsTh', 'JsTs', 'JsTd', 'JsTc',
                    'JdTh', 'JdTs', 'JdTd', 'JdTc', 'JcTh', 'JcTs', 'JcTd', 'JcTc' ]
   t.equal(res.length, 16, '16 ways to hold JT')
   t.deepEqual(res, expected, expected.join(' '))
