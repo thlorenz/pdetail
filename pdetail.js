@@ -1,5 +1,5 @@
 const ranks = [ 'A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2' ]
-const suits = [ 'h', 's', 'd', 'c' ]
+const suits = [ 'h', 'c', 'd', 's' ]
 
 const cache = new Map()
 
